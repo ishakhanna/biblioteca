@@ -76,10 +76,19 @@ public class BibliotecaTest {
         Input mockInput = mock(Input.class);
         when(mockInput.readOption()).thenReturn(1).thenReturn(7);
         (new Biblioteca(mockOutput,mockInput)).reserveBook();
-        //obj1.reserveBook(1);
         verify(mockOutput).print("Thank You! Enjoy the book.");
         (new Biblioteca(mockOutput,mockInput)).reserveBook();
-        //obj1.reserveBook(7);
         verify(mockOutput).print("Sorry, we don't have that book yet");
+    }
+
+    @Test
+    public void TestcheckLibraryNumber()throws Exception{
+        Output mockOutput = mock(Output.class);
+        Input mockInput = mock(Input.class);
+        when(mockInput.readOption()).thenReturn(123);
+        (new Biblioteca(mockOutput,mockInput)).checkLibraryNumber();
+        verify(mockOutput).print("Enter your library number");
+        verify(mockOutput).print("Talk to the Librarian");
+
     }
 }

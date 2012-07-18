@@ -16,7 +16,7 @@ import java.io.IOException;
     --A customer should be able to reserve a book for collection.
     --A customer should be notified if their selected book was reserved successfully with “Thank You! Enjoy the book.”
     --A customer should be notified if their selected book is not available with “Sorry we don't have that book yet.”
-    A customer should be able to check their library number and be notified with “Please talk to Librarian. Thank you.”
+    --A customer should be able to check their library number and be notified with “Please talk to Librarian. Thank you.”
 
  */
 public class Biblioteca {
@@ -111,6 +111,11 @@ public class Biblioteca {
             }
         }
            if(i>4)output.print("Sorry, we don't have that book yet");
+    }
+    public void checkLibraryNumber()throws IOException{
+        output.print("Enter your library number");
+        int libraryNumber = input.readOption();
+        output.print("Talk to the Librarian");
     }
     public static void main(String[] args){
       Output out = new Output();
