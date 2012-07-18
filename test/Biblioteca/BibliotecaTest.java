@@ -16,7 +16,7 @@ public class BibliotecaTest {
     Output mockOutput = mock(Output.class);
     new Biblioteca(mockOutput,new Input());
     verify(mockOutput).print("Welcome to the Bangalore Public Library System");
-    verify(mockOutput).print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
+    //verify(mockOutput).print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
     }
 
     @Test
@@ -47,8 +47,6 @@ public class BibliotecaTest {
     public void TestviewBooks() {
         Output mockOutput = mock(Output.class);
         (new Biblioteca(mockOutput,new Input())).viewBooks();
-        verify(mockOutput).print("Welcome to the Bangalore Public Library System");
-        verify(mockOutput).print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
         verify(mockOutput).print("1 Head First Java Kathy Sierra");
         verify(mockOutput).print("2 Complete Reference Java Herbert Schildt");
         verify(mockOutput).print("3 Data Structures with C Tanenbaun");
@@ -56,5 +54,32 @@ public class BibliotecaTest {
         verify(mockOutput).print("5 Fountain Head Ayn Rand");
         verify(mockOutput).print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
 
+    }
+
+    @Test
+    public void TestselectSecondMenuOption() throws Exception{
+        Input mockInput = mock(Input.class);
+        Output mockOutput = mock(Output.class);
+        // 4 thenReturn() is for avoiding the infinite while loop
+        when(mockInput.readOption()).thenReturn(1).thenReturn(3).thenReturn(4).thenReturn(1);
+        (new Biblioteca(mockOutput, mockInput)).selectSecondMenuOption();
+        verify(mockOutput).print("Reserve a Book");
+        (new Biblioteca(mockOutput, mockInput)).selectSecondMenuOption();
+        verify(mockOutput).print("Exit");
+        (new Biblioteca(mockOutput, mockInput)).selectSecondMenuOption();
+        verify(mockOutput).print("Select a Valid Option");
+    }
+
+    @Test
+    public void TestreserveBook() throws Exception{
+        Output mockOutput = mock(Output.class);
+        Input mockInput = mock(Input.class);
+        when(mockInput.readOption()).thenReturn(1).thenReturn(7);
+        (new Biblioteca(mockOutput,mockInput)).reserveBook();
+        //obj1.reserveBook(1);
+        verify(mockOutput).print("Thank You! Enjoy the book.");
+        (new Biblioteca(mockOutput,mockInput)).reserveBook();
+        //obj1.reserveBook(7);
+        verify(mockOutput).print("Sorry, we don't have that book yet");
     }
 }

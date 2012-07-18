@@ -17,6 +17,7 @@ public class Book {
         this.BookCode = BookCode;
 
     }
+    public void setBookCode(int newBookCode){this.BookCode = newBookCode;}
     public String getTitle(){return(this.Title);}
     public String getAuthor(){return(this.Author);}
     public int getBookCode(){return(this.BookCode);}
