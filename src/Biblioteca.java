@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * Created with IntelliJ IDEA.
  * User: isha
@@ -6,8 +8,8 @@
  *
  *  --The customer should see a welcome when they start the application.
     --A customer should have a list of menu options at the start of the application.
-    A customer should be able to select a menu option.
-    A customer should be notified if they do not select a valid option with “Select a valid option!!”
+    --A customer should be able to select a menu option.
+    --A customer should be notified if they do not select a valid option with “Select a valid option!!”
     A customer should be able to view all books the library has.
     A customer should be able to reserve a book for collection.
     A customer should be notified if their selected book was reserved successfully with “Thank You! Enjoy the book.”
@@ -16,9 +18,36 @@
 
  */
 public class Biblioteca {
+    private Output output;
+    private Input input;
+    public Biblioteca(Output output, Input input){
+        this.output = output;
+        this.input = input;
+        output.print("Welcome to the Bangalore Public Library System");
+        output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
+    }
+    // Method to Allow the User to select menu options
+    public void selectMenuOption()throws IOException{
+        while(true){
+        try {int menuOption = input.readOption();
+            if(menuOption == 1){
+                output.print("View Books");
+               // viewBooks();
+               break;
+            }
+            else if(menuOption == 2){
+                output.print("Reserve a Book");
+                //reserveBook();
+                break;
+            }
+            else if(menuOption == 3) {
+                output.print("Exit");
+                break;
+            }
+            else
+                output.print("Select a Valid Option");
 
-    public Biblioteca(Output output){
-          output.print("Welcome to the Bangalore Public Library System");
-          output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
+        }catch(IOException ioe) {System.out.println("ERROR");}
+    }
     }
 }
