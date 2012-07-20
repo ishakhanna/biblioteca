@@ -1,5 +1,7 @@
 package Biblioteca;
+
 import java.io.IOException;
+
 /**
  * Created with IntelliJ IDEA.
  * User: isha
@@ -15,16 +17,11 @@ import java.io.IOException;
     --A customer should be notified if their selected book was reserved successfully with “Thank You! Enjoy the book.”
     --A customer should be notified if their selected book is not available with “Sorry we don't have that book yet.”
     --A customer should be able to check their library number and be notified with “Please talk to Librarian. Thank you.”
-
+    --Implement Movie Library that displays movie name, its director and its rating
  */
 public class Biblioteca {
     private Output output;
     private Input input;
-    // Details of the book Titles, Authors and Book Codes
-    String[] Titles = {"Head First Java","Complete Reference Java","Data Structures with C","Java SCJP","Fountain Head"};
-    String[] Authors = {"Kathy Sierra","Herbert Schildt","Tanenbaun","Khalid A Mughal","Ayn Rand"};
-    int[] BookCodes = {1,2,3,4,5};
-    Book books[] = new Book[5];
 
     public Biblioteca(Output output, Input input){
         this.output = output;
@@ -32,62 +29,20 @@ public class Biblioteca {
 
         output.print("Welcome to the Bangalore Public Library System");
 
-        createLibraryBookBank();
-
-        try {
-            selectMenuOption();} catch (IOException ioe){System.exit(1);}
-    }
-    //The method is used to create objects of Book class in order to make a library book bank data
-    private void createLibraryBookBank() {
-        for(int i = 0; i<5;i++){
-            books[i] = new Book(Titles[i],Authors[i],BookCodes[i]);
-    }
+       // try {
+         //   selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
 
-    // Method to Allow the User to select menu options
-    public void selectMenuOption()throws IOException{
-        output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
-        while(true){
-        try {int menuOption = input.readOption();
-            if(menuOption == 1){
-                output.print("View Books");
-                viewBooks();
-               break;
-            }
-            else if(menuOption == 2){
-                output.print("Reserve a Book");
-                reserveBook();
-                break;
-            }
-            else if(menuOption == 3) {
-                output.print("Exit");
-                break;
-            }
-            else
-                output.print("Select a Valid Option");
-
-        }catch(IOException ioe) {System.out.println("ERROR");}
-    }
-    }
-    public void viewBooks(){
-       for(int i = 0; i<5;i++){
-        output.print(books[i].getBookCode()+" "+books[i].getTitle()+" "+books[i].getAuthor()); }
-        output.print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
-        try {
-          selectSecondMenuOption();} catch (IOException ioe){System.exit(1);}
-    }
-    public void selectSecondMenuOption()throws IOException{
+    public void selectMenuOption()throws IOException {
+        output.print("Please Select one of the following menu options\n1. Book Library\n2. Movie Library\n3. Exit");
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
-                    output.print("Reserve a Book");
-                    try {
-                        reserveBook();
-                        }catch(IOException ioe){System.out.println("ERROR");}
+                    new BookLibrary(output,input);
                     break;
                 }
                 else if(menuOption == 2){
-                    selectMenuOption();
+                    new MovieLibrary(output,input);
                     break;
                 }
                 else if(menuOption == 3) {
@@ -101,25 +56,6 @@ public class Biblioteca {
         }
     }
 
-    public void reserveBook()throws IOException{
-        output.print("Enter the Book Code");
-        int bookCode = input.readOption();
-        int i;
-        for(i=0;i<5;i++){
-            if(books[i].getBookCode()==bookCode)               {
-                output.print("Thank You! Enjoy the book.");
-                books[i].setBookCode(999);
-                break;
-            }
-        }
-           if(i>4)output.print("Sorry, we don't have that book yet");
-        checkLibraryNumber();
-    }
-    public void checkLibraryNumber()throws IOException{
-        output.print("Enter your library number");
-        int libraryNumber = input.readOption();
-        output.print("Talk to the Librarian");
-    }
     public static void main(String[] args){
       Output out = new Output();
       Input in = new Input();
