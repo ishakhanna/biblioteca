@@ -1,12 +1,10 @@
 package Biblioteca;
-//import BibliotecaProject.Input;
-//import BibliotecaProject.Output;
 import java.io.IOException;
 /**
  * Created with IntelliJ IDEA.
  * User: isha
  * Date: 18/7/12
- * Time: 12:08 PM
+ * Time: 12:08 AM
  *
  *  --The customer should see a welcome when they start the application.
     --A customer should have a list of menu options at the start of the application.
@@ -27,15 +25,19 @@ public class Biblioteca {
     String[] Authors = {"Kathy Sierra","Herbert Schildt","Tanenbaun","Khalid A Mughal","Ayn Rand"};
     int[] BookCodes = {1,2,3,4,5};
     Book books[] = new Book[5];
+
     public Biblioteca(Output output, Input input){
         this.output = output;
         this.input = input;
-        output.print("Welcome to the Bangalore Public Library System");
-        createLibraryBookBank();
-        //try {
-          //  selectMenuOption();} catch (IOException ioe){System.exit(1);}
-    }
 
+        output.print("Welcome to the Bangalore Public Library System");
+
+        createLibraryBookBank();
+
+        try {
+            selectMenuOption();} catch (IOException ioe){System.exit(1);}
+    }
+    //The method is used to create objects of Book class in order to make a library book bank data
     private void createLibraryBookBank() {
         for(int i = 0; i<5;i++){
             books[i] = new Book(Titles[i],Authors[i],BookCodes[i]);
@@ -54,8 +56,7 @@ public class Biblioteca {
             }
             else if(menuOption == 2){
                 output.print("Reserve a Book");
-                output.print("Enter the Book Code");
-                //reserveBook();
+                reserveBook();
                 break;
             }
             else if(menuOption == 3) {
@@ -72,20 +73,21 @@ public class Biblioteca {
        for(int i = 0; i<5;i++){
         output.print(books[i].getBookCode()+" "+books[i].getTitle()+" "+books[i].getAuthor()); }
         output.print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
-        //try {
-        //  selectSecondMenuOption();} catch (IOException ioe){System.exit(1);}
+        try {
+          selectSecondMenuOption();} catch (IOException ioe){System.exit(1);}
     }
     public void selectSecondMenuOption()throws IOException{
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
                     output.print("Reserve a Book");
-                    //try {reserveBook();}catch(IOException ioe){System.out.println("ERROR");}
+                    try {
+                        reserveBook();
+                        }catch(IOException ioe){System.out.println("ERROR");}
                     break;
                 }
                 else if(menuOption == 2){
-                    //output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
-                    //selectMenuOption();
+                    selectMenuOption();
                     break;
                 }
                 else if(menuOption == 3) {
@@ -111,6 +113,7 @@ public class Biblioteca {
             }
         }
            if(i>4)output.print("Sorry, we don't have that book yet");
+        checkLibraryNumber();
     }
     public void checkLibraryNumber()throws IOException{
         output.print("Enter your library number");
@@ -120,6 +123,6 @@ public class Biblioteca {
     public static void main(String[] args){
       Output out = new Output();
       Input in = new Input();
-      Biblioteca o1 = new Biblioteca(out,in);
+      Biblioteca object1 = new Biblioteca(out,in);
     }
 }

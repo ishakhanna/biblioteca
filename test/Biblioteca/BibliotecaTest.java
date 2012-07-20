@@ -7,29 +7,28 @@
  */
 package Biblioteca;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 public class BibliotecaTest {
+
    @Test
-    public void Testprint() throws Exception{
-    Output mockOutput = mock(Output.class);
+    public void testPrint() throws Exception{
+    Output mockOutput = mock(Output.class);  // Creating a mock object of Output class to monitor interactions that occur.
     new Biblioteca(mockOutput,new Input());
-    verify(mockOutput).print("Welcome to the Bangalore Public Library System");
-    //verify(mockOutput).print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
+    verify(mockOutput).print("Welcome to the Bangalore Public Library System"); // Using verify function to check if the print function has got the desired argument
     }
 
     @Test
-    public void TestreadOption() throws Exception{
-    Input mockInput = mock(Input.class);
+    public void testReadOption() throws Exception{
+    Input mockInput = mock(Input.class);     // Creating a mock object of Input class to monitor interactions that occur.
     Output mockOutput = mock(Output.class);
     new Biblioteca(mockOutput, mockInput);
-    when(mockInput.readOption()).thenReturn(0);
+    when(mockInput.readOption()).thenReturn(0);  //when function helps us to return the desired value whenever a function is invoked
     assertEquals(mockInput.readOption(),0);
     }
 
     @Test
-    public void TestselectMenuOption() throws Exception{
+    public void testSelectMenuOption() throws Exception{
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
         when(mockInput.readOption()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2);
@@ -37,6 +36,7 @@ public class BibliotecaTest {
         verify(mockOutput).print("Exit");
         (new Biblioteca(mockOutput, mockInput)).selectMenuOption();
         verify(mockOutput).print("Select a Valid Option");
+        //To avoid program to go in infinite loop I have commented the following command.
         //(new Biblioteca(mockOutput, mockInput)).selectMenuOption();
         verify(mockOutput).print("View Books");
         (new Biblioteca(mockOutput, mockInput)).selectMenuOption();
@@ -44,7 +44,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void TestviewBooks() {
+    public void testViewBooks() {
         Output mockOutput = mock(Output.class);
         (new Biblioteca(mockOutput,new Input())).viewBooks();
         verify(mockOutput).print("1 Head First Java Kathy Sierra");
@@ -57,10 +57,10 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void TestselectSecondMenuOption() throws Exception{
+    public void testSelectSecondMenuOption() throws Exception{
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
-        // 4 thenReturn() is for avoiding the infinite while loop
+        // 4th thenReturn() is for avoiding the infinite while loop
         when(mockInput.readOption()).thenReturn(1).thenReturn(3).thenReturn(4).thenReturn(1);
         (new Biblioteca(mockOutput, mockInput)).selectSecondMenuOption();
         verify(mockOutput).print("Reserve a Book");
@@ -71,7 +71,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void TestreserveBook() throws Exception{
+    public void testReserveBook() throws Exception{
         Output mockOutput = mock(Output.class);
         Input mockInput = mock(Input.class);
         when(mockInput.readOption()).thenReturn(1).thenReturn(7);
@@ -82,7 +82,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void TestcheckLibraryNumber()throws Exception{
+    public void testCheckLibraryNumber()throws Exception{
         Output mockOutput = mock(Output.class);
         Input mockInput = mock(Input.class);
         when(mockInput.readOption()).thenReturn(123);
@@ -92,3 +92,4 @@ public class BibliotecaTest {
 
     }
 }
+
