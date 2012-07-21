@@ -24,8 +24,8 @@ public class BookLibrary {
         output.print("BOOK LIBRARY");
         createLibraryBookBank();
 
-       // try {
-         //   selectMenuOption();} catch (IOException ioe){System.exit(1);}
+        try {
+            selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
 
     //The method is used to create objects of Book class in order to make a library book bank data
@@ -41,16 +41,16 @@ public class BookLibrary {
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
                     output.print("View Books");
-                    //viewBooks();
+                    viewBooks();
                     break;
                 }
                 else if(menuOption == 2){
                     output.print("Reserve a Book");
-                    //reserveBook();
+                    reserveBook();
                     break;
                 }
                 else if(menuOption == 3) {
-                    //(new Biblioteca(output,input)).selectMenuOption();
+                    (new Biblioteca(output,input)).selectMenuOption();
                     break;
                 }
                 else if(menuOption == 4) {
@@ -67,21 +67,21 @@ public class BookLibrary {
         for(int i = 0; i<5;i++){
             output.print(books[i].getBookCode()+" "+books[i].getTitle()+" "+books[i].getAuthor()); }
         output.print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
-        //try {
-          //  selectSecondMenuOption();} catch (IOException ioe){System.exit(1);}
+        try {
+            selectSecondMenuOption();} catch (IOException ioe){System.exit(1);}
     }
     public void selectSecondMenuOption()throws IOException{
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
                     output.print("Reserve a Book");
-                    //try {
-                      //  reserveBook();
-                    //}catch(IOException ioe){System.out.println("ERROR");}
+                    try {
+                        reserveBook();
+                    }catch(IOException ioe){System.out.println("ERROR");}
                     break;
                 }
                 else if(menuOption == 2){
-                    //selectMenuOption();
+                    selectMenuOption();
                     break;
                 }
                 else if(menuOption == 3) {
@@ -108,10 +108,5 @@ public class BookLibrary {
         }
         if(i>4)output.print("Sorry, we don't have that book yet");
         //checkLibraryNumber();
-    }
-    public void checkLibraryNumber()throws IOException{
-        output.print("Enter your library number");
-        int libraryNumber = input.readOption();
-        output.print("Talk to the Librarian");
     }
 }

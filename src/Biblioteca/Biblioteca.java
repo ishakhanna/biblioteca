@@ -18,6 +18,7 @@ import java.io.IOException;
     --A customer should be notified if their selected book is not available with “Sorry we don't have that book yet.”
     --A customer should be able to check their library number and be notified with “Please talk to Librarian. Thank you.”
     --Implement Movie Library that displays movie name, its director and its rating
+    --Database for user logins created fo future use
  */
 public class Biblioteca {
     private Output output;
@@ -26,11 +27,10 @@ public class Biblioteca {
     public Biblioteca(Output output, Input input){
         this.output = output;
         this.input = input;
-
         output.print("Welcome to the Bangalore Public Library System");
 
-       // try {
-         //   selectMenuOption();} catch (IOException ioe){System.exit(1);}
+        try {
+            selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
 
     public void selectMenuOption()throws IOException {
@@ -53,6 +53,43 @@ public class Biblioteca {
                     output.print("Select a Valid Option");
 
             }catch(IOException ioe) {System.out.println("ERROR");}
+        }
+    }
+
+    public void checkLibraryNumber()throws IOException{
+        output.print("Enter your library number");
+        int libraryNumber = input.readOption();
+        output.print("Talk to the Librarian");
+    }
+
+    public void login()throws IOException{
+
+        LoginAndPasswordDatabase obj = new LoginAndPasswordDatabase();
+        output.print("Enter your Login and Password\n Library Number : ");
+        String login = input.readOption(0);
+        output.print("Password : ");
+        String password = input.readOption(0);
+        int i;
+        for(i=0;i<5;i++){
+            if(login.equals(obj.Database[i][0]))
+            {
+                int trials = 1;
+                while (trials < 4){
+                if(password.equals(obj.Database[i][1]))
+                {    output.print("Login and Password Accepted");
+                    break;
+                }
+                else {output.print("Wrong Password\n Re-enter.");
+                    password = input.readOption(0);
+                    trials++;
+                }
+                }
+                if(trials==4)output.print("Incorrect Login\nTalk to the Librarian");
+                break;
+            }
+        }
+        if(i>4){
+            output.print("Incorrect Login\nTalk to the Librarian");
         }
     }
 

@@ -17,4 +17,11 @@ public class Input {
         int MenuOption = Integer.parseInt(SMenuOption);
         return MenuOption;
     }
+
+    // For function Overloading
+    public String readOption(int i)throws IOException{
+        BufferedReader brMenuOption = new BufferedReader(new InputStreamReader(System.in));
+        String SMenuOption = brMenuOption.readLine();
+        return SMenuOption;
+    }
 }

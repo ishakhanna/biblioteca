@@ -64,15 +64,4 @@ public class BookLibraryTest {
         (new BookLibrary(mockOutput,mockInput)).reserveBook();
         verify(mockOutput).print("Sorry, we don't have that book yet");
     }
-
-    @Test
-    public void testCheckLibraryNumber() throws Exception {
-        Output mockOutput = mock(Output.class);
-        Input mockInput = mock(Input.class);
-        when(mockInput.readOption()).thenReturn(123);
-        (new BookLibrary(mockOutput,mockInput)).checkLibraryNumber();
-        verify(mockOutput).print("Enter your library number");
-        verify(mockOutput).print("Talk to the Librarian");
-
-    }
 }
