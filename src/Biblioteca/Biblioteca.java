@@ -34,7 +34,8 @@ public class Biblioteca {
     }
 
     public void selectMenuOption()throws IOException {
-        output.print("Please Select one of the following menu options\n1. Book Library\n2. Movie Library\n3. Exit");
+        output.print("Please Select one of the following menu options");
+        output.print("Book Library","Movie Library","Exit");
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
@@ -47,6 +48,7 @@ public class Biblioteca {
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
+                    System.exit(0);
                     break;
                 }
                 else
@@ -97,5 +99,7 @@ public class Biblioteca {
       Output out = new Output();
       Input in = new Input();
       Biblioteca object1 = new Biblioteca(out,in);
+        try{object1.checkLibraryNumber();
+        object1.login();}catch (Exception e){System.exit(1);}
     }
 }
