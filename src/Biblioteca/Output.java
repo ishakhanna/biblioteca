@@ -10,5 +10,13 @@ import java.lang.*;
 public class Output {
     public void print(String display) {
         System.out.println(display);
+        System.out.println();
+    }
+    public void print(String... args){
+        int i=1;
+        for(String n : args){
+                System.out.println(i+". "+n);
+            i++;
+        }
     }
 }

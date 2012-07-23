@@ -34,7 +34,8 @@ public class MovieLibrary {
     }
 
     public void selectMenuOption()throws IOException {
-        output.print("Please Select one of the following menu options\n1. View Movies\n2. Main Menu\n3. Exit");
+        output.print("Please Select one of the following menu options");
+        output.print("View Movies","Main Menu","Exit");
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
@@ -48,6 +49,7 @@ public class MovieLibrary {
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
+                    System.exit(0);
                     break;
                 }
                 else

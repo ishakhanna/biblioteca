@@ -36,7 +36,8 @@ public class BookLibrary {
     }
 
     public void selectMenuOption()throws IOException {
-        output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Main Menu\n4. Exit");
+        output.print("Please Select one of the following menu options");
+        output.print("View Books","Reserve a Book","Main Menu","Exit");
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
@@ -55,6 +56,7 @@ public class BookLibrary {
                 }
                 else if(menuOption == 4) {
                     output.print("Exit");
+                    System.exit(0);
                     break;
                 }
                 else
@@ -66,7 +68,8 @@ public class BookLibrary {
     public void viewBooks(){
         for(int i = 0; i<5;i++){
             output.print(books[i].getBookCode()+" "+books[i].getTitle()+" "+books[i].getAuthor()); }
-        output.print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
+        output.print("Please Select one of the following menu options");
+        output.print("Reserve a Book","Go to Previous Menu","Exit");
         try {
             selectSecondMenuOption();} catch (IOException ioe){System.exit(1);}
     }
@@ -86,6 +89,7 @@ public class BookLibrary {
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
+                    System.exit(0);
                     break;
                 }
                 else

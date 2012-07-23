@@ -35,6 +35,7 @@ public class Biblioteca {
 
     public void selectMenuOption()throws IOException {
         output.print("Please Select one of the following menu options");
+        //Calling the overloaded method in Output class in order to print the menu
         output.print("Book Library","Movie Library","Exit");
         while(true){
             try {int menuOption = input.readOption();

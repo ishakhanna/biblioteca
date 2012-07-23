@@ -36,8 +36,8 @@ public class BookLibraryTest {
         verify(mockOutput).print("3 Data Structures with C Tanenbaun");
         verify(mockOutput).print("4 Java SCJP Khalid A Mughal");
         verify(mockOutput).print("5 Fountain Head Ayn Rand");
-        verify(mockOutput).print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
-
+        verify(mockOutput).print("Please Select one of the following menu options");
+        verify(mockOutput).print("Reserve a Books","Go to Previous Menu","Exit");
     }
 
     @Test
