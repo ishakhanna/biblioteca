@@ -1,42 +1,42 @@
 package Biblioteca;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: isha
  * Date: 20/7/12
  * Time: 10:20 PM
- * To change this template use File | Settings | File Templates.
  */
-// TODO - remove template comments, better change the settings in File | Settings | File Templates.
 public class BookLibrary {
     private Output output;
     private Input input;
-    // Details of the book Titles, Authors and Book Codes
     // TODO - read about java collections. Use collection data structure instead.
+    // Details of the book Titles, Authors and Book Codes
     String[] Titles = {"Head First Java","Complete Reference Java","Data Structures with C","Java SCJP","Fountain Head"};
     String[] Authors = {"Kathy Sierra","Herbert Schildt","Tanenbaun","Khalid A Mughal","Ayn Rand"};
     int[] BookCodes = {1,2,3,4,5};
-    // TODO - read about java collections, use List<Book> instead.
-    Book books[] = new Book[5];
+    List<Book> books = new ArrayList<Book>();
 
     public BookLibrary(Output output, Input input){
         this.output = output;
         this.input = input;
         output.print("BOOK LIBRARY");
         createLibraryBookBank();
+    }
 
+    public void start() {
         try {
-            // TODO - constructors should only be used to set the state of object, -
-            // TODO - not to put into recursive loop. Separate the trigger logic into separate method.
-            selectMenuOption();} catch (IOException ioe){System.exit(1);} // TODO - abrupt exit, print out error message to know failure cause
+            selectMenuOption();} catch (IOException ioe){System.out.println("EROOR!!");
+            System.exit(1);}
     }
 
     //The method is used to create objects of Book class in order to make a library book bank data
     private void createLibraryBookBank() {
         for(int i = 0; i<5;i++){
-            books[i] = new Book(Titles[i],Authors[i],BookCodes[i]);
+            books.add(new Book(Titles[i],Authors[i],BookCodes[i]));
         }
     }
 
@@ -48,21 +48,20 @@ public class BookLibrary {
                 if(menuOption == 1){
                     output.print("View Books");
                     viewBooks();
-                    break;
+                    return;
                 }
                 else if(menuOption == 2){
                     output.print("Reserve a Book");
                     reserveBook();
-                    break;
+                    return;
                 }
                 else if(menuOption == 3) {
                     (new Biblioteca(output,input)).selectMenuOption();
-                    break;
+                    return;
                 }
                 else if(menuOption == 4) {
                     output.print("Exit");
-                    System.exit(0);
-                    break;
+                    return;
                 }
                 else
                     output.print("Select a Valid Option");
@@ -71,8 +70,8 @@ public class BookLibrary {
         }
     }
     public void viewBooks(){
-        for(int i = 0; i<5;i++){
-            output.print(books[i].getBookCode()+" "+books[i].getTitle()+" "+books[i].getAuthor()); }
+        for(Book book : books){
+            output.print(book.getBookCode() + " " + book.getTitle() + " " + book.getAuthor()); }
         output.print("Please Select one of the following menu options");
         output.print("Reserve a Book","Go to Previous Menu","Exit");
         try {
@@ -85,17 +84,17 @@ public class BookLibrary {
                     output.print("Reserve a Book");
                     try {
                         reserveBook();
-                    }catch(IOException ioe){System.out.println("ERROR");}
-                    break;
+                    }catch(IOException ioe){System.out.println("ERROR");
+                        System.exit(1);}
+                    return;
                 }
                 else if(menuOption == 2){
                     selectMenuOption();
-                    break;
+                    return;
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
-                    System.exit(0);
-                    break;
+                    return;
                 }
                 else
                     output.print("Select a Valid Option");
@@ -107,17 +106,13 @@ public class BookLibrary {
     public void reserveBook()throws IOException{
         output.print("Enter the Book Code");
         int bookCode = input.readOption();
-        int i;
-        // TODO - magic number 5, rather recurse from 0 -> books.length
-        for(i=0;i<5;i++){
-            if(books[i].getBookCode()==bookCode)               {
+        for(Book book : books){
+            if(book.getBookCode()==bookCode)               {
                 output.print("Thank You! Enjoy the book.");
-                books[i].setBookCode(999);
-                break; // TODO - do early return instead
+                books.remove(book);
+                return;
             }
         }
-        // TODO - do early return from for loop to avoid checking for condition again.
-        if(i>4)output.print("Sorry, we don't have that book yet");
-        //checkLibraryNumber();
+        output.print("Sorry, we don't have that book yet");
     }
 }

@@ -8,22 +8,20 @@ import java.io.InputStreamReader;
  * User: isha
  * Date: 18/7/12
  * Time: 1:50 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Input {
-    // TODO - better variable naming
-    public int readOption()throws IOException{
-        BufferedReader brMenuOption = new BufferedReader(new InputStreamReader(System.in));
-        String SMenuOption = brMenuOption.readLine();
-        int MenuOption = Integer.parseInt(SMenuOption);
-        return MenuOption;
-    }
+        public int readOption()throws IOException{
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            String userInputString = userInput.readLine();
+            //int userInputInt = Integer.parseInt(userInputString);
+            return Integer.parseInt(userInputString);
+        }
 
     // For function Overloading
     // TODO - why is parameter i not used in method ?
     public String readOption(int i)throws IOException{
-        BufferedReader brMenuOption = new BufferedReader(new InputStreamReader(System.in));
-        String SMenuOption = brMenuOption.readLine();
-        return SMenuOption;
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        //String userInputString = userInput.readLine();
+        return userInput.readLine();
     }
 }

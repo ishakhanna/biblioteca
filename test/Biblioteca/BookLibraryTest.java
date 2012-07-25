@@ -8,7 +8,6 @@ import static org.mockito.Mockito.*;
  * User: isha
  * Date: 20/7/12
  * Time: 11:13 PM
- * To change this template use File | Settings | File Templates.
  */
 public class BookLibraryTest {
 
@@ -37,7 +36,7 @@ public class BookLibraryTest {
         verify(mockOutput).print("4 Java SCJP Khalid A Mughal");
         verify(mockOutput).print("5 Fountain Head Ayn Rand");
         verify(mockOutput).print("Please Select one of the following menu options");
-        verify(mockOutput).print("Reserve a Books","Go to Previous Menu","Exit");
+        verify(mockOutput).print("Reserve a Book","Go to Previous Menu","Exit");
     }
 
     @Test

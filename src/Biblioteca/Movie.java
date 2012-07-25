@@ -5,26 +5,21 @@ package Biblioteca;
  * User: isha
  * Date: 20/7/12
  * Time: 5:54 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Movie {
-    private String Title;
-    private String Director;
-    private String Rating;
+    private String title;
+    private String director;
+    private String rating;
 
-    public Movie(String Title, String Director, String Rating){
-        this.Title = Title;
-        this.Director = Director;
-        this.Rating = Rating;
+    public Movie(String title, String director, String rating){
+        this.title = title;
+        this.director = director;
+        this.rating = rating;
     }
 
-    // TODO - use comments if method name not clear enough
-    //returns the title of the calling Book object
-    public String getTitle(){return(this.Title);}
+    public String getTitle(){return(this.title);}
 
-    //returns the author of the calling Book object
-    public String getDirector(){return(this.Director);}
+    public String getDirector(){return(this.director);}
 
-    //returns the book code of the calling book object
-    public String getRating(){return(this.Rating);}
+    public String getRating(){return(this.rating);}
 }

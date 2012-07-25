@@ -3,7 +3,6 @@
  * User: isha
  * Date: 18/7/12
  * Time: 12:09 PM
- * To change this template use File | Settings | File Templates.
  */
 package Biblioteca;
 import org.junit.Test;
@@ -51,7 +50,7 @@ public class BibliotecaTest {
         when(mockInput.readOption()).thenReturn(123);
         (new Biblioteca(mockOutput,mockInput)).checkLibraryNumber();
         verify(mockOutput).print("Enter your library number");
-        verify(mockOutput).print("Talk to the Librarian");
+        verify(mockOutput).print("Your Library Number 123 Talk to the Librarian");
 
     }
 
@@ -59,13 +58,10 @@ public class BibliotecaTest {
     public void testLogin() throws Exception{
         Output mockOutput = mock(Output.class);
         Input mockInput = mock(Input.class);
-        when(mockInput.readOption(0)).thenReturn("111-1111").thenReturn("abcd").thenReturn("abc").thenReturn("111-1117").thenReturn("abc");
+        when(mockInput.readOption(0)).thenReturn("111-1111").thenReturn("abc").thenReturn("111-1111").thenReturn("xyz");
         (new Biblioteca(mockOutput,mockInput)).login();
         verify(mockOutput).print("Enter your Login and Password\n Library Number : ");
         verify(mockOutput).print("Password : ");
-        verify(mockOutput).print("Wrong Password\n Re-enter.");
-        verify(mockOutput).print("Login and Password Accepted");
-        when(mockInput.readOption(0)).thenReturn("111-1117").thenReturn("abc");
         (new Biblioteca(mockOutput,mockInput)).login();
         verify(mockOutput).print("Incorrect Login\nTalk to the Librarian");
     }

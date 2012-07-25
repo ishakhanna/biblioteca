@@ -29,13 +29,12 @@ public class Biblioteca {
         this.output = output;
         this.input = input;
         output.print("Welcome to the Bangalore Public Library System");
-        // TODO - reformat the code based on java coding conventions
-        try {
-            // TODO - constructors should only be used to set the state of object, -
-            // TODO - not to put into recursive loop. Separate the trigger logic into separate method.
-            selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
 
+    public void start(){
+        try {
+            selectMenuOption();} catch (IOException ioe){System.exit(1);}
+    }
     public void selectMenuOption()throws IOException {
         output.print("Please Select one of the following menu options");
         //Calling the overloaded method in Output class in order to print the menu
@@ -43,18 +42,16 @@ public class Biblioteca {
         while(true){
             try {int menuOption = input.readOption();
                 if(menuOption == 1){
-                    new BookLibrary(output,input);
-                    break;
+                    (new BookLibrary(output,input)).start();
+                    return;
                 }
                 else if(menuOption == 2){
-                    new MovieLibrary(output,input);
-                    break;
+                    (new MovieLibrary(output,input)).start();
+                    return;
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
-                    // TODO - do you need break if System.exit is present
-                    System.exit(0);
-                    break;
+                    return;
                 }
                 else
                     output.print("Select a Valid Option");
@@ -64,54 +61,40 @@ public class Biblioteca {
     }
 
     public void checkLibraryNumber()throws IOException{
-        // TODO - why unused variable ?
         output.print("Enter your library number");
         int libraryNumber = input.readOption();
-        output.print("Talk to the Librarian");
+        output.print("Your Library Number "+libraryNumber+" Talk to the Librarian");
     }
 
     public void login()throws IOException{
-        // TODO - name the objects properly
-        LoginAndPasswordDatabase obj = new LoginAndPasswordDatabase();
+
+        LoginAndPasswordDatabase loginObject = new LoginAndPasswordDatabase();
         output.print("Enter your Login and Password\n Library Number : ");
         String login = input.readOption(0);
         output.print("Password : ");
         String password = input.readOption(0);
-        // TODO - too long method, hard to understand, break into logical chunks
-        int i;
-        // TODO - YAGNI - You Ain't Gonna Need It
-        // TODO - KISS - Keep It Simple Stupid
-        // TODO - No requirement for giving multiple trials for entering password. Fail Fast.
-        for(i=0;i<5;i++){
-            if(login.equals(obj.Database[i][0]))
-            {
-                int trials = 1;
-                while (trials < 4){
-                if(password.equals(obj.Database[i][1]))
-                {    output.print("Login and Password Accepted");
-                    break;
-                }
-                else {output.print("Wrong Password\n Re-enter.");
-                    password = input.readOption(0);
-                    trials++;
-                }
-                }
-                if(trials==4)output.print("Incorrect Login\nTalk to the Librarian");
-                break;
-            }
-        }
-        if(i>4){
-            output.print("Incorrect Login\nTalk to the Librarian");
-        }
+        this.checkLogin(loginObject, login, password);
     }
 
+    public void checkLogin(LoginAndPasswordDatabase loginObject,String login,String password){
+        int i;
+        for(i=0;i<5;i++){
+            if(login.equals(loginObject.Database[i][0])&&password.equals(loginObject.Database[i][1]))
+            {
+                output.print("Login and Password Accepted");
+                return;
+            }
+        }
+            output.print("Incorrect Login\nTalk to the Librarian");
+    }
     public static void main(String[] args){
-      Output out = new Output();
-      Input in = new Input();
-        // TODO -  name the objects properly
-      Biblioteca object1 = new Biblioteca(out,in);
-        // TODO - is this line ever executed ?
-        try{object1.checkLibraryNumber();
-        object1.login();}catch (Exception e){System.exit(1);}
+        Output out = new Output();
+        Input in = new Input();
+        Biblioteca bibliotecaObject = new Biblioteca(out,in);
+        bibliotecaObject.start();
+        try{
+            bibliotecaObject.checkLibraryNumber();
+            bibliotecaObject.login();}catch (Exception e){System.out.println("ERROR!!");
+            System.exit(1);}
     }
 }

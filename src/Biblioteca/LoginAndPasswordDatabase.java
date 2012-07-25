@@ -5,7 +5,6 @@ package Biblioteca;
  * User: isha
  * Date: 21/7/12
  * Time: 7:21 PM
- * To change this template use File | Settings | File Templates.
  */
     public class LoginAndPasswordDatabase {
 
@@ -16,8 +15,5 @@ package Biblioteca;
             this.Database[i][0] = "111-111"+(i+1);
             this.Database[i][1] = "abc";
         }
-}
-    // TODO - why need main method here ?
-   public static void main(String args[]){LoginAndPasswordDatabase o1 = new LoginAndPasswordDatabase();
 }
 }

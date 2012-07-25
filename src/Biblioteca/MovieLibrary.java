@@ -7,9 +7,7 @@ import java.io.IOException;
  * User: isha
  * Date: 20/7/12
  * Time: 10:30 PM
- * To change this template use File | Settings | File Templates.
  */
-// TODO - remove template comments, better change the settings in File | Settings | File Templates.
 public class MovieLibrary {
     private Output output;
     private Input input;
@@ -24,11 +22,14 @@ public class MovieLibrary {
         this.input = input;
         output.print("MOVIE LIBRARY");
         createLibraryMovieBank();
-        try {
-            // TODO - constructors should only be used to set the state of object, -
-            // TODO - not to put into recursive loop. Separate the trigger logic into separate method.
-            selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
+
+    public void start(){
+        try {
+            selectMenuOption();} catch (IOException ioe){System.out.println("ERROR!!");
+            System.exit(1);}
+    }
+
     //The method is used to create objects of Movie class in order to make a library movie bank data
     private void createLibraryMovieBank() {
         for(int i = 0; i<15;i++){
@@ -44,16 +45,15 @@ public class MovieLibrary {
                 if(menuOption == 1){
                     output.print("View Movies");
                     viewMovies();
-                    break;
+                    return;
                 }
                 else if(menuOption == 2) {
                     new Biblioteca(output,input);
-                    break;
+                    return;
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
-                    System.exit(0);
-                    break;
+                    return;
                 }
                 else
                     output.print("Select a Valid Option");
