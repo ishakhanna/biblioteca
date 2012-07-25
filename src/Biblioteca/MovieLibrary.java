@@ -9,6 +9,7 @@ import java.io.IOException;
  * Time: 10:30 PM
  * To change this template use File | Settings | File Templates.
  */
+// TODO - remove template comments, better change the settings in File | Settings | File Templates.
 public class MovieLibrary {
     private Output output;
     private Input input;
@@ -24,6 +25,8 @@ public class MovieLibrary {
         output.print("MOVIE LIBRARY");
         createLibraryMovieBank();
         try {
+            // TODO - constructors should only be used to set the state of object, -
+            // TODO - not to put into recursive loop. Separate the trigger logic into separate method.
             selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
     //The method is used to create objects of Movie class in order to make a library movie bank data

@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
  * To change this template use File | Settings | File Templates.
  */
 public class Input {
+    // TODO - better variable naming
     public int readOption()throws IOException{
         BufferedReader brMenuOption = new BufferedReader(new InputStreamReader(System.in));
         String SMenuOption = brMenuOption.readLine();
@@ -19,6 +20,7 @@ public class Input {
     }
 
     // For function Overloading
+    // TODO - why is parameter i not used in method ?
     public String readOption(int i)throws IOException{
         BufferedReader brMenuOption = new BufferedReader(new InputStreamReader(System.in));
         String SMenuOption = brMenuOption.readLine();

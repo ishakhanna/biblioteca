@@ -9,13 +9,16 @@ import java.io.IOException;
  * Time: 10:20 PM
  * To change this template use File | Settings | File Templates.
  */
+// TODO - remove template comments, better change the settings in File | Settings | File Templates.
 public class BookLibrary {
     private Output output;
     private Input input;
     // Details of the book Titles, Authors and Book Codes
+    // TODO - read about java collections. Use collection data structure instead.
     String[] Titles = {"Head First Java","Complete Reference Java","Data Structures with C","Java SCJP","Fountain Head"};
     String[] Authors = {"Kathy Sierra","Herbert Schildt","Tanenbaun","Khalid A Mughal","Ayn Rand"};
     int[] BookCodes = {1,2,3,4,5};
+    // TODO - read about java collections, use List<Book> instead.
     Book books[] = new Book[5];
 
     public BookLibrary(Output output, Input input){
@@ -25,7 +28,9 @@ public class BookLibrary {
         createLibraryBookBank();
 
         try {
-            selectMenuOption();} catch (IOException ioe){System.exit(1);}
+            // TODO - constructors should only be used to set the state of object, -
+            // TODO - not to put into recursive loop. Separate the trigger logic into separate method.
+            selectMenuOption();} catch (IOException ioe){System.exit(1);} // TODO - abrupt exit, print out error message to know failure cause
     }
 
     //The method is used to create objects of Book class in order to make a library book bank data
@@ -103,13 +108,15 @@ public class BookLibrary {
         output.print("Enter the Book Code");
         int bookCode = input.readOption();
         int i;
+        // TODO - magic number 5, rather recurse from 0 -> books.length
         for(i=0;i<5;i++){
             if(books[i].getBookCode()==bookCode)               {
                 output.print("Thank You! Enjoy the book.");
                 books[i].setBookCode(999);
-                break;
+                break; // TODO - do early return instead
             }
         }
+        // TODO - do early return from for loop to avoid checking for condition again.
         if(i>4)output.print("Sorry, we don't have that book yet");
         //checkLibraryNumber();
     }

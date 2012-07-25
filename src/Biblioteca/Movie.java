@@ -18,6 +18,7 @@ public class Movie {
         this.Rating = Rating;
     }
 
+    // TODO - use comments if method name not clear enough
     //returns the title of the calling Book object
     public String getTitle(){return(this.Title);}
 

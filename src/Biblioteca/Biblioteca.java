@@ -1,3 +1,4 @@
+// TODO - java naming convention for naming package
 package Biblioteca;
 
 import java.io.IOException;
@@ -28,8 +29,10 @@ public class Biblioteca {
         this.output = output;
         this.input = input;
         output.print("Welcome to the Bangalore Public Library System");
-
+        // TODO - reformat the code based on java coding conventions
         try {
+            // TODO - constructors should only be used to set the state of object, -
+            // TODO - not to put into recursive loop. Separate the trigger logic into separate method.
             selectMenuOption();} catch (IOException ioe){System.exit(1);}
     }
 
@@ -49,6 +52,7 @@ public class Biblioteca {
                 }
                 else if(menuOption == 3) {
                     output.print("Exit");
+                    // TODO - do you need break if System.exit is present
                     System.exit(0);
                     break;
                 }
@@ -60,19 +64,24 @@ public class Biblioteca {
     }
 
     public void checkLibraryNumber()throws IOException{
+        // TODO - why unused variable ?
         output.print("Enter your library number");
         int libraryNumber = input.readOption();
         output.print("Talk to the Librarian");
     }
 
     public void login()throws IOException{
-
+        // TODO - name the objects properly
         LoginAndPasswordDatabase obj = new LoginAndPasswordDatabase();
         output.print("Enter your Login and Password\n Library Number : ");
         String login = input.readOption(0);
         output.print("Password : ");
         String password = input.readOption(0);
+        // TODO - too long method, hard to understand, break into logical chunks
         int i;
+        // TODO - YAGNI - You Ain't Gonna Need It
+        // TODO - KISS - Keep It Simple Stupid
+        // TODO - No requirement for giving multiple trials for entering password. Fail Fast.
         for(i=0;i<5;i++){
             if(login.equals(obj.Database[i][0]))
             {
@@ -99,7 +108,9 @@ public class Biblioteca {
     public static void main(String[] args){
       Output out = new Output();
       Input in = new Input();
+        // TODO -  name the objects properly
       Biblioteca object1 = new Biblioteca(out,in);
+        // TODO - is this line ever executed ?
         try{object1.checkLibraryNumber();
         object1.login();}catch (Exception e){System.exit(1);}
     }

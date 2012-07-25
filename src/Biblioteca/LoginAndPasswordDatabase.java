@@ -17,6 +17,7 @@ package Biblioteca;
             this.Database[i][1] = "abc";
         }
 }
+    // TODO - why need main method here ?
    public static void main(String args[]){LoginAndPasswordDatabase o1 = new LoginAndPasswordDatabase();
 }
 }
