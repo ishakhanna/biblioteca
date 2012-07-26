@@ -11,14 +11,13 @@ import static org.mockito.Mockito.when;
  * User: isha
  * Date: 20/7/12
  * Time: 11:13 PM
- * To change this template use File | Settings | File Templates.
  */
 public class MovieLibraryTest {
     @Test
     public void testSelectMenuOption() throws Exception {
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
-        when(mockInput.readOption()).thenReturn(1).thenReturn(5).thenReturn(3);
+        when(mockInput.readOptionString()).thenReturn(1).thenReturn(5).thenReturn(3);
         (new MovieLibrary(mockOutput, mockInput)).selectMenuOption();
         verify(mockOutput).print("View Movies");
         (new MovieLibrary(mockOutput, mockInput)).selectMenuOption();

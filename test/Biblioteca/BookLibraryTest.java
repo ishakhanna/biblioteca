@@ -15,7 +15,7 @@ public class BookLibraryTest {
     public void testSelectMenuOption() throws Exception {
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
-        when(mockInput.readOption()).thenReturn(1).thenReturn(2).thenReturn(5).thenReturn(4);
+        when(mockInput.readOptionString()).thenReturn(1).thenReturn(2).thenReturn(5).thenReturn(4);
         (new BookLibrary(mockOutput, mockInput)).selectMenuOption();
         verify(mockOutput).print("View Books");
         (new BookLibrary(mockOutput, mockInput)).selectMenuOption();
@@ -44,7 +44,7 @@ public class BookLibraryTest {
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
         // 4th thenReturn() is for avoiding the infinite while loop
-        when(mockInput.readOption()).thenReturn(1).thenReturn(3).thenReturn(4).thenReturn(1);
+        when(mockInput.readOptionString()).thenReturn(1).thenReturn(3).thenReturn(4).thenReturn(1);
         (new BookLibrary(mockOutput, mockInput)).selectSecondMenuOption();
         verify(mockOutput).print("Reserve a Book");
         (new BookLibrary(mockOutput, mockInput)).selectSecondMenuOption();
@@ -57,7 +57,7 @@ public class BookLibraryTest {
     public void testReserveBook() throws Exception {
         Output mockOutput = mock(Output.class);
         Input mockInput = mock(Input.class);
-        when(mockInput.readOption()).thenReturn(1).thenReturn(7);
+        when(mockInput.readOptionString()).thenReturn(1).thenReturn(7);
         (new BookLibrary(mockOutput,mockInput)).reserveBook();
         verify(mockOutput).print("Thank You! Enjoy the book.");
         (new BookLibrary(mockOutput,mockInput)).reserveBook();

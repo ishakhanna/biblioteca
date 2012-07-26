@@ -23,15 +23,15 @@ public class BibliotecaTest {
     Input mockInput = mock(Input.class);     // Creating a mock object of Input class to monitor interactions that occur.
     Output mockOutput = mock(Output.class);
     new Biblioteca(mockOutput, mockInput);
-    when(mockInput.readOption()).thenReturn(0);  //when function helps us to return the desired value whenever a function is invoked
-    assertEquals(mockInput.readOption(),0);
+    when(mockInput.readOptionString()).thenReturn(0);  //when function helps us to return the desired value whenever a function is invoked
+    assertEquals(mockInput.readOptionString(),0);
     }
 
    @Test
     public void testSelectMenuOption() throws Exception{
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
-        when(mockInput.readOption()).thenReturn(1).thenReturn(2).thenReturn(5).thenReturn(3);
+        when(mockInput.readOptionString()).thenReturn(1).thenReturn(2).thenReturn(5).thenReturn(3);
         (new Biblioteca(mockOutput, mockInput)).selectMenuOption();
         verify(mockOutput).print("BOOK LIBRARY");
         (new Biblioteca(mockOutput, mockInput)).selectMenuOption();
@@ -47,7 +47,7 @@ public class BibliotecaTest {
     public void testCheckLibraryNumber() throws Exception {
         Output mockOutput = mock(Output.class);
         Input mockInput = mock(Input.class);
-        when(mockInput.readOption()).thenReturn(123);
+        when(mockInput.readOptionString()).thenReturn(123);
         (new Biblioteca(mockOutput,mockInput)).checkLibraryNumber();
         verify(mockOutput).print("Enter your library number");
         verify(mockOutput).print("Your Library Number 123 Talk to the Librarian");
@@ -58,7 +58,7 @@ public class BibliotecaTest {
     public void testLogin() throws Exception{
         Output mockOutput = mock(Output.class);
         Input mockInput = mock(Input.class);
-        when(mockInput.readOption(0)).thenReturn("111-1111").thenReturn("abc").thenReturn("111-1111").thenReturn("xyz");
+        when(mockInput.readOptionInt()).thenReturn("111-1111").thenReturn("abc").thenReturn("111-1111").thenReturn("xyz");
         (new Biblioteca(mockOutput,mockInput)).login();
         verify(mockOutput).print("Enter your Login and Password\n Library Number : ");
         verify(mockOutput).print("Password : ");

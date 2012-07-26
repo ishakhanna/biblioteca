@@ -44,7 +44,7 @@ public class BookLibrary {
         output.print("Please Select one of the following menu options");
         output.print("View Books","Reserve a Book","Main Menu","Exit");
         while(true){
-            try {int menuOption = input.readOption();
+            try {int menuOption = input.readOptionString();
                 if(menuOption == 1){
                     output.print("View Books");
                     viewBooks();
@@ -79,7 +79,7 @@ public class BookLibrary {
     }
     public void selectSecondMenuOption()throws IOException{
         while(true){
-            try {int menuOption = input.readOption();
+            try {int menuOption = input.readOptionString();
                 if(menuOption == 1){
                     output.print("Reserve a Book");
                     try {
@@ -105,7 +105,7 @@ public class BookLibrary {
 
     public void reserveBook()throws IOException{
         output.print("Enter the Book Code");
-        int bookCode = input.readOption();
+        int bookCode = input.readOptionString();
         for(Book book : books){
             if(book.getBookCode()==bookCode)               {
                 output.print("Thank You! Enjoy the book.");

@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  * Time: 1:50 PM
  */
 public class Input {
-        public int readOption()throws IOException{
+        public int readOptionString()throws IOException{
             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
             String userInputString = userInput.readLine();
             //int userInputInt = Integer.parseInt(userInputString);
@@ -18,10 +18,8 @@ public class Input {
         }
 
     // For function Overloading
-    // TODO - why is parameter i not used in method ?
-    public String readOption(int i)throws IOException{
+    public String readOptionInt()throws IOException{
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-        //String userInputString = userInput.readLine();
         return userInput.readLine();
     }
 }

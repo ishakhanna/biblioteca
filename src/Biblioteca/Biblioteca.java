@@ -40,7 +40,7 @@ public class Biblioteca {
         //Calling the overloaded method in Output class in order to print the menu
         output.print("Book Library","Movie Library","Exit");
         while(true){
-            try {int menuOption = input.readOption();
+            try {int menuOption = input.readOptionString();
                 if(menuOption == 1){
                     (new BookLibrary(output,input)).start();
                     return;
@@ -62,7 +62,7 @@ public class Biblioteca {
 
     public void checkLibraryNumber()throws IOException{
         output.print("Enter your library number");
-        int libraryNumber = input.readOption();
+        int libraryNumber = input.readOptionString();
         output.print("Your Library Number "+libraryNumber+" Talk to the Librarian");
     }
 
@@ -70,9 +70,9 @@ public class Biblioteca {
 
         LoginAndPasswordDatabase loginObject = new LoginAndPasswordDatabase();
         output.print("Enter your Login and Password\n Library Number : ");
-        String login = input.readOption(0);
+        String login = input.readOptionInt();
         output.print("Password : ");
-        String password = input.readOption(0);
+        String password = input.readOptionInt();
         this.checkLogin(loginObject, login, password);
     }
 

@@ -1,6 +1,8 @@
 package Biblioteca;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +17,8 @@ public class MovieLibrary {
     String[] Titles = {"COCKTAIL","WANTED","CHRONICLE","AMERICAN PSYCHO","CONSTANTINE","BOL BACHCHAN","PEARL HARBOR","LITTLE MANHATTEN","THE AMAZING SPIDERMAN","CONTAGION","3 IDIOTS","AGNEEPATH","A BEAUTIFUL MIND","THE AVENGERS","MYSTIC RIVER"};
     String[] Director = {"Homi Adajania","Timur Bekmambetoy", "Josh Trank","Mary Haron","Francis Lawrence","Rohit Shetty","Michael Bay", "Mark Levin","Marc Webb", "Steven Soderbergh","Rajkumar Hirani","Karan Malhotra","Ron Hoverd","Joss Whedon","Clint Eastwood"};
     String[] Rating = {"N/A","6.7","7.1","8","8.1","6.9","7.5","8","N/A","8.2","8.3","7.2","8.1","8.7","7.4"};
-    Movie movies[] = new Movie[15];
+    //Movie movies[] = new Movie[15];
+    List<Movie> movies = new ArrayList<Movie>();
 
     public MovieLibrary(Output output, Input input) {
         this.output = output;
@@ -33,7 +36,7 @@ public class MovieLibrary {
     //The method is used to create objects of Movie class in order to make a library movie bank data
     private void createLibraryMovieBank() {
         for(int i = 0; i<15;i++){
-            movies[i] = new Movie(Titles[i],Director[i],Rating[i]);
+            movies.add(new Movie(Titles[i],Director[i],Rating[i]));
         }
     }
 
@@ -41,7 +44,7 @@ public class MovieLibrary {
         output.print("Please Select one of the following menu options");
         output.print("View Movies","Main Menu","Exit");
         while(true){
-            try {int menuOption = input.readOption();
+            try {int menuOption = input.readOptionString();
                 if(menuOption == 1){
                     output.print("View Movies");
                     viewMovies();
@@ -63,7 +66,7 @@ public class MovieLibrary {
     }
 
     public void viewMovies() {
-        for(int i = 0; i<15;i++){
-            output.print(movies[i].getTitle()+" "+movies[i].getDirector()+" "+movies[i].getRating()); }
+        for(Movie movie:movies){
+            output.print(movie.getTitle()+" "+movie.getDirector()+" "+movie.getRating()); }
     }
 }
